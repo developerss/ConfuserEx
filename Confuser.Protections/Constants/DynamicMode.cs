@@ -18,9 +18,12 @@ namespace Confuser.Protections.Constants {
 			var ret = new List<Instruction>();
 
 			var codeGen = new CodeGen(block, key, init, ret);
+			if(codeGen != null)
+			{
 			codeGen.GenerateCIL(decrypt);
 			codeGen.Commit(init.Body);
-
+			}
+			
 			var dmCodeGen = new DMCodeGen(typeof(void), new[] {
 				Tuple.Create("{BUFFER}", typeof(uint[])),
 				Tuple.Create("{KEY}", typeof(uint[]))
